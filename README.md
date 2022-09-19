@@ -6,8 +6,6 @@
 | nickname           | string              | null: false               |
 | email              | string              | null: false               |
 | encrypted_password | string              | null: false               |
-| user_image         | string              |                           |
-| introduction       | text                |                           |
 | family_name        | string              | null: false               |
 | first_name         | string              | null: false               |
 | family_name_kana   | string              | null: false               |
@@ -15,13 +13,30 @@
 | birth_day          | date                | null: false               |
 
 ### Association
-* has_many :products
-* belongs_to :destination
+* has_many :item
+* belongs_to :order
 
-## destination table
+### items table
 | Column             | Type                | Options                         |
 |--------------------|---------------------|---------------------------------|
-| user_id            | integer             | null: false, foreign_key: true  |
+| name               | string              | null: false                     |
+| price              | integer             | null: false                     |
+| description        | string              |                                 |
+| category           | integer             | null; false                     |
+| status             | text                | null: false                     |
+| shipping_cost      | string              | null: false                     |
+| prefecture         | string              | null: false                     |
+| shipping_days      | string              | null: false                     |
+| user               | integer             | null: false, foreign_key: true  |
+
+## Association
+- belongs_to :item
+- has_one :purchase
+
+### orders table
+| Column             | Type                | Options                         |
+|--------------------|---------------------|---------------------------------|
+| user               | integer             | null: false, foreign_key: true  |
 | family_name        | string              | null: false                     |
 | first_name         | string              | null: false                     |
 | family_name_kana   | string              | null: false                     |
@@ -36,21 +51,16 @@
 ### Association
 - belongs_to :user
 
-### product table
+## addresses table
 | Column             | Type                | Options                         |
 |--------------------|---------------------|---------------------------------|
-| name               | string              | null: false                     |
-| price              | string              | null: false                     |
-| description        | string              | null: false                     |
-| status             | string              | null: false                     |
-| size               | string              | null: false                     |
-| shipping_cost      | string              | null: false                     |
-| shipping_days      | string              | null: false                     |
-| prefecture_id      | string              | null: false                     |
-| judgment           | string              |                                 |
-| shipping_id        | integer             | null: false, foreign_key: true  |
-| user_id            | integer             | null: false, foreign_key: true  |
+| post_code          | string              | null: false                     |
+| prefecture         | string              | null: false                     |
+| city               | string              | null: false                     |
+| address            | string              | null: false                     |
+| building_name      | string              |                                 |
+| phone_number       | string              |                                 |
+| purchase           | references          | null: false, foreign_key: true  |
 
-## Association
+### Association
 - belongs_to :user
-- belongs_to_active_hash :prefecture
