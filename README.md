@@ -4,7 +4,7 @@
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
 | nickname           | string              | null: false               |
-| email              | string              | null: false               |
+| email              | string              | unique: true               |
 | encrypted_password | string              | null: false               |
 | family_name        | string              | null: false               |
 | first_name         | string              | null: false               |
@@ -21,32 +21,23 @@
 |--------------------|---------------------|---------------------------------|
 | name               | string              | null: false                     |
 | price              | integer             | null: false                     |
-| description        | string              |                                 |
+| description        | string              | null: false                     |
 | category           | integer             | null; false                     |
-| status             | text                | null: false                     |
-| shipping_cost      | string              | null: false                     |
-| prefecture         | string              | null: false                     |
-| shipping_days      | string              | null: false                     |
+| status_id          | integer             | null: false                     |
+| shipping_cost_id   | integer             | null: false                     |
+| prefecture_id      | integer             | null: false                     |
+| shipping_days_id   | integer             | null: false                     |
 | user               | integer             | null: false, foreign_key: true  |
 
 ## Association
 - belongs_to :item
-- has_one :purchase
+- has_one :order
 
 ### orders table
 | Column             | Type                | Options                         |
 |--------------------|---------------------|---------------------------------|
 | user               | integer             | null: false, foreign_key: true  |
-| family_name        | string              | null: false                     |
-| first_name         | string              | null: false                     |
-| family_name_kana   | string              | null: false                     |
-| first_name_kane    | string              | null: false                     |
-| post_code          | string              | null: false                     |
-| prefecture         | string              | null: false                     |
-| city               | string              | null: false                     |
-| address            | string              | null: false                     |
-| building_name      | string              |                                 |
-| phone_number       | string              |                                 |
+| order              | references          | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :user
@@ -55,12 +46,12 @@
 | Column             | Type                | Options                         |
 |--------------------|---------------------|---------------------------------|
 | post_code          | string              | null: false                     |
-| prefecture         | string              | null: false                     |
+| prefecture_id      | integer             | null: false                     |
 | city               | string              | null: false                     |
 | address            | string              | null: false                     |
 | building_name      | string              |                                 |
-| phone_number       | string              |                                 |
-| purchase           | references          | null: false, foreign_key: true  |
+| phone_number       | string              | null: false                     |
+| order              | references          | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :user
