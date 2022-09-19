@@ -22,12 +22,12 @@
 | name               | string              | null: false                     |
 | price              | integer             | null: false                     |
 | description        | string              | null: false                     |
-| category           | integer             | null; false                     |
+| category_id        | integer             | null; false                     |
 | status_id          | integer             | null: false                     |
 | shipping_cost_id   | integer             | null: false                     |
 | prefecture_id      | integer             | null: false                     |
 | shipping_days_id   | integer             | null: false                     |
-| user               | integer             | null: false, foreign_key: true  |
+| user               | references          | null: false, foreign_key: true  |
 
 ## Association
 - belongs_to :item
@@ -36,8 +36,8 @@
 ### orders table
 | Column             | Type                | Options                         |
 |--------------------|---------------------|---------------------------------|
-| user               | integer             | null: false, foreign_key: true  |
-| order              | references          | null: false, foreign_key: true  |
+| user               | references          | null: false, foreign_key: true  |
+| purchase           | references          | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :user
@@ -51,7 +51,7 @@
 | address            | string              | null: false                     |
 | building_name      | string              |                                 |
 | phone_number       | string              | null: false                     |
-| order              | references          | null: false, foreign_key: true  |
+| purchase           | references          | null: false, foreign_key: true  |
 
 ### Association
-- belongs_to :user
+- belongs_to :order
