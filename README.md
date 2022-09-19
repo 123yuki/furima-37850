@@ -1,20 +1,20 @@
 # テーブル設計
 
 ## users table
-| Column             | Type                | Options                   |
-|--------------------|---------------------|---------------------------|
-| nickname           | string              | null: false               |
-| email              | string              | unique: true               |
-| encrypted_password | string              | null: false               |
-| family_name        | string              | null: false               |
-| first_name         | string              | null: false               |
-| family_name_kana   | string              | null: false               |
-| first_name_kana    | string              | null: false               |
-| birth_day          | date                | null: false               |
+| Column             | Type                | Options                         |
+|--------------------|---------------------|---------------------------------|
+| nickname           | string              | null: false                     |
+| email              | string              | null: false, unique: true       |
+| encrypted_password | string              | null: false                     |
+| family_name        | string              | null: false                     |
+| first_name         | string              | null: false                     |
+| family_name_kana   | string              | null: false                     |
+| first_name_kana    | string              | null: false                     |
+| birth_day          | date                | null: false                     |
 
 ### Association
-* has_many :item
-* belongs_to :order
+* has_many :items
+* has_many :orders
 
 ### items table
 | Column             | Type                | Options                         |
@@ -37,7 +37,7 @@
 | Column             | Type                | Options                         |
 |--------------------|---------------------|---------------------------------|
 | user               | references          | null: false, foreign_key: true  |
-| purchase           | references          | null: false, foreign_key: true  |
+| ancesty            | references          | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :user
@@ -51,7 +51,6 @@
 | address            | string              | null: false                     |
 | building_name      | string              |                                 |
 | phone_number       | string              | null: false                     |
-| purchase           | references          | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :order
