@@ -22,7 +22,7 @@
 | user               | references          | null: false, foreign_key: true  |
 | name               | string              | null: false                     |
 | price              | integer             | null: false                     |
-| description        | string              | null: false                     |
+| description        | text              | null: false                     |
 | category_id        | integer             | null; false                     |
 | status_id          | integer             | null: false                     |
 | shipping_cost_id   | integer             | null: false                     |
@@ -42,7 +42,7 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :addresses
+- has_one :address
 
 ## addresses table
 | Column             | Type                | Options                         |
@@ -53,6 +53,7 @@
 | address            | string              | null: false                     |
 | building_name      | string              |                                 |
 | phone_number       | string              | null: false                     |
+| orders             | references          | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :order
