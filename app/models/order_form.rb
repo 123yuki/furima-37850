@@ -1,6 +1,6 @@
 class OrderForm
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postcode, :delivery_area_id, :city, :block, :building, :phone_number
+  attr_accessor :user_id, :item_id, :postcode, :delivery_area_id, :city, :block, :building, :phone_number, :token
 
   with_options presence: true do
     validates :user_id
@@ -10,6 +10,7 @@ class OrderForm
     validates :city
     validates :block
     validates :phone_number, format: { with: /\A[0-9]+{11}\z/, message: 'テストコード後に実装！' }
+    validates :token
   end
 
   def save
