@@ -9,7 +9,7 @@ class OrderForm
     validates :delivery_area_id, numericality: { other_than: 0, message: "can't be blank" }
     validates :city
     validates :block
-    validates :phone_number, format: { with: /\A[0-9]+{11}\z/, message: 'テストコード後に実装！' }
+    validates :phone_number, format: { with: /\A[0-9]{11}\z/, message: 'is invalid' }
     validates :token
   end
 
